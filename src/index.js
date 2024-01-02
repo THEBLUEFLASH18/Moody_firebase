@@ -1,6 +1,17 @@
 /* === Imports === */
 
+import { initializeApp } from "firebase/app";
+
 /* === Firebase Setup === */
+
+const firebaseConfig = {
+    apiKey: process.env.API_KEY,
+    authDomain: "moody-51a4c.firebaseapp.com",
+    projectId: "moody-51a4c",
+    storageBucket: "moody-51a4c.appspot.com",
+    messagingSenderId: "269670080745",
+    appId: "1:269670080745:web:9fb169fa410fc8d3811078"
+};
 
 /* === UI === */
 
