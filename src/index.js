@@ -1,12 +1,13 @@
 /* === Imports === */
-require('dotenv').config();
+
+
 
 import { initializeApp } from "firebase/app";
 
 /* === Firebase Setup === */
 
 const firebaseConfig = {
-    apiKey: process.env.API_KEY,
+    apiKey: "AIzaSyA_n4sDPvPUcasLUdN6fKwdqQuZ4DDFd1o",
     authDomain: "moody-51a4c.firebaseapp.com",
     projectId: "moody-51a4c",
     storageBucket: "moody-51a4c.appspot.com",
