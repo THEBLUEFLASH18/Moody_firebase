@@ -1,4 +1,5 @@
 /* === Imports === */
+require('dotenv').config();
 
 import { initializeApp } from "firebase/app";
 
@@ -14,6 +15,8 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+
+console.log(app)
 
 /* === UI === */
 
