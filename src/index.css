@@ -171,3 +171,18 @@ button:hover {
 #logged-in-view {
     display: none;
 }
+
+#logged-in-view .container {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+}
+.sign-out-btn {
+    width: 30px;
+    height: 30px;
+    background-image: url(../images/sign-out.png);
+    background-repeat: none;
+    background-size: cover;
+}
+
