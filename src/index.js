@@ -70,6 +70,7 @@ function authSignInWithEmail() {
     signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
         // Signed in 
+        clearAuthFields()
         showLoggedInView()
         // ...
     })
@@ -84,7 +85,8 @@ function authCreateAccountWithEmail() {
     const password = document.getElementById("password-input").value
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-        showLoggedInView()
+            clearAuthFields()
+            showLoggedInView()
     })
         .catch((error) => {
             console.error("Firebase code has some type of error");
@@ -120,4 +122,13 @@ function showElement(element) {
 
 function hideElement(element) {
     element.style.display = "none"
+}
+
+function clearInputField(field) {
+	field.value = ""
+}
+
+function clearAuthFields() {
+    clearInputField(document.getElementById("email-input"))
+    clearInputField(document.getElementById("password-input"))
 }
