@@ -184,5 +184,9 @@ button:hover {
     background-image: url(../images/sign-out.png);
     background-repeat: none;
     background-size: cover;
+    
 }
 
+.sign-out-btn:hover {
+    border: solid green 7px;
+}

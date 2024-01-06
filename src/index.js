@@ -3,8 +3,8 @@
 
 
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword
- } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, 
+    signOut } from "firebase/auth";
 
 /* === Firebase Setup === */
 
@@ -37,6 +37,7 @@ const signInWithGoogleButtonEl = document.getElementById("sign-in-with-google-bt
 
 const signInButtonEl = document.getElementById("sign-in-btn")
 const createAccountButtonEl = document.getElementById("create-account-btn")
+const signOutBtn = document.getElementById("sign-out-btn")
 
 /* == UI - Event Listeners == */
 
@@ -44,6 +45,7 @@ signInWithGoogleButtonEl.addEventListener("click", authSignInWithGoogle)
 
 signInButtonEl.addEventListener("click", authSignInWithEmail)
 createAccountButtonEl.addEventListener("click", authCreateAccountWithEmail)
+signOutBtn.addEventListener("click", authSignOut)
 
 /* === Main Code === */
 
@@ -88,6 +90,16 @@ function authCreateAccountWithEmail() {
             console.error("Firebase code has some type of error");
             // ..
     });
+}
+
+function authSignOut() {
+
+    signOut(auth).then(() => {
+        // Sign-out successful.
+        showLoggedOutView()
+      }).catch((error) => {
+        console.error(error.message)
+      });
 }
 
 /* == Functions - UI Functions == */
