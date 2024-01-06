@@ -4,7 +4,7 @@
 
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, 
-    signOut } from "firebase/auth";
+    signOut, onAuthStateChanged } from "firebase/auth";
 
 /* === Firebase Setup === */
 
@@ -49,7 +49,16 @@ signOutBtn.addEventListener("click", authSignOut)
 
 /* === Main Code === */
 
-showLoggedOutView()
+
+
+onAuthStateChanged(auth, (user) => {
+        if (user) {
+          showLoggedInView()
+        } else {
+          showLoggedOutView()
+        }
+});
+
 
 /* === Functions === */
 
@@ -71,7 +80,6 @@ function authSignInWithEmail() {
     .then((userCredential) => {
         // Signed in 
         clearAuthFields()
-        showLoggedInView()
         // ...
     })
     .catch((error) => {
@@ -86,7 +94,6 @@ function authCreateAccountWithEmail() {
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             clearAuthFields()
-            showLoggedInView()
     })
         .catch((error) => {
             console.error("Firebase code has some type of error");
@@ -98,11 +105,14 @@ function authSignOut() {
 
     signOut(auth).then(() => {
         // Sign-out successful.
-        showLoggedOutView()
       }).catch((error) => {
         console.error(error.message)
       });
 }
+
+
+
+
 
 /* == Functions - UI Functions == */
 
