@@ -3,12 +3,13 @@
 
 
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword
+ } from "firebase/auth";
 
 /* === Firebase Setup === */
 
 const firebaseConfig = {
-    apiKey: "AIzaSyA_n4sDPvPUcasLUdN6fKwdqQuZ4DDFd1o",
+    apiKey: "",
     authDomain: "moody-51a4c.firebaseapp.com",
     projectId: "moody-51a4c",
     storageBucket: "moody-51a4c.appspot.com",
@@ -57,7 +58,22 @@ function authSignInWithGoogle() {
 }
 
 function authSignInWithEmail() {
-    console.log("Sign in with email and password")
+
+    
+    const email = document.getElementById("email-input").value
+    const password = document.getElementById("password-input").value
+
+    
+
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+        // Signed in 
+        showLoggedInView()
+        // ...
+    })
+    .catch((error) => {
+        console.log(error.message)
+    });
 }
 
 function authCreateAccountWithEmail() {
