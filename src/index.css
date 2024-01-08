@@ -190,3 +190,46 @@ button:hover {
 .sign-out-btn:hover {
     border: solid green 7px;
 }
+
+
+
+#logged-out-view .container {
+    gap: 2em;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
+}
+
+.user-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8em;
+}
+
+.user-section img {
+    width: 3.75em;
+    height: 3.75em;
+    border-radius: 100%;
+    border: var(--border-width) solid var(--dark-color);
+}
+
+nav {
+    margin: 0.6em 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.container {
+    border:  red dashed;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
