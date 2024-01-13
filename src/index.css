@@ -172,19 +172,15 @@ button:hover {
     display: none;
 }
 
-#logged-in-view .container {
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    align-items: center;
-}
+
 .sign-out-btn {
+    cursor: pointer;
+    padding: 0;
     width: 30px;
     height: 30px;
     background-image: url(../images/sign-out.png);
     background-repeat: none;
     background-size: cover;
-    
 }
 
 .sign-out-btn:hover {
@@ -201,6 +197,8 @@ button:hover {
     display: flex;
     flex-direction: column;
     gap: 3em;
+    align-self: center; /* Center itself within the container */
+    justify-content: center; /* Center its children vertically */
 }
 
 .user-section {
@@ -221,15 +219,18 @@ nav {
     margin: 0.6em 0;
     width: 100%;
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    border: blue dashed;
 }
 
 .container {
-    border:  red dashed;
-    width: 300px;
-    height: 300px;
+    max-width: var(--maximum-width);
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    align-items: center; /* Center children horizontally */
+    justify-content: flex-start; /* Align children to start (top) */
+    width: 100%;
+    border: red dashed;
+    height: 300px;
 }
