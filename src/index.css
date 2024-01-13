@@ -38,8 +38,12 @@ body {
 
 /* === Typography === */
 
-h1 {
+h1, h2{
     margin: 0;
+}
+
+h2 {
+    font-weight: 500;
 }
 
 .app-title {
@@ -233,4 +237,8 @@ nav {
     width: 100%;
     border: red dashed;
     height: 300px;
+}
+
+.user-section h2 {
+    font-size: 1.2em;
 }
