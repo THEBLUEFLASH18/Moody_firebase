@@ -26,6 +26,7 @@ const provider = new GoogleAuthProvider();
 
 
 
+
 /* === UI === */
 
 /* == UI - Elements == */
@@ -39,6 +40,7 @@ const signInWithGoogleButtonEl = document.getElementById("sign-in-with-google-bt
 const signInButtonEl = document.getElementById("sign-in-btn")
 const createAccountButtonEl = document.getElementById("create-account-btn")
 const signOutBtn = document.getElementById("sign-out-btn")
+const userProfilePictureEl = document.getElementById("user-profile-picture")
 
 /* == UI - Event Listeners == */
 
@@ -54,7 +56,8 @@ signOutBtn.addEventListener("click", authSignOut)
 
 onAuthStateChanged(auth, (user) => {
         if (user) {
-          showLoggedInView()
+          showLoggedInView();
+          showProfilePicture(userProfilePictureEl, user);
         } else {
           showLoggedOutView()
         }
@@ -150,4 +153,13 @@ function clearInputField(field) {
 function clearAuthFields() {
     clearInputField(document.getElementById("email-input"))
     clearInputField(document.getElementById("password-input"))
+}
+
+function showProfilePicture(imageElement, user){
+    if(user.photoURL){
+        imageElement.src = user.photoURL
+    }
+    else{
+        imageElement.src = "/images/Default.jpeg"
+    }
 }
