@@ -185,12 +185,13 @@ function showUserGreeting(element, user){
 
 function authUpdateProfile() {
     updateProfile(auth.currentUser, {
-        displayName: "Jane Q. User", photoURL: "https://example.com/jane-q-user/profile.jpg"
+
+
+        displayName: `${displayNameInputEl.value}`, photoURL: `${photoURLInputEl.value}`
       }).then(() => {
-        // Profile updated!
+        console.log("Updated the display name and profile picture")
         // ...
       }).catch((error) => {
-        // An error occurred
-        // ...
+        console.log("error occurred!")
       });
 }
