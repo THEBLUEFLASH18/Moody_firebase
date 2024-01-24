@@ -55,7 +55,7 @@ signInWithGoogleButtonEl.addEventListener("click", authSignInWithGoogle)
 signInButtonEl.addEventListener("click", authSignInWithEmail)
 createAccountButtonEl.addEventListener("click", authCreateAccountWithEmail)
 signOutBtn.addEventListener("click", authSignOut)
-updateProfileButtonEl.addEventListener("click", authUpdateProfile)
+//updateProfileButtonEl.addEventListener("click", authUpdateProfile)
 
 /* === Main Code === */
 
