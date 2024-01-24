@@ -4,7 +4,8 @@
 
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, 
-    signOut, onAuthStateChanged, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+    signOut, onAuthStateChanged, GoogleAuthProvider, signInWithPopup,
+    updateProfile } from "firebase/auth";
 
 /* === Firebase Setup === */
 
@@ -43,6 +44,10 @@ const signOutBtn = document.getElementById("sign-out-btn")
 const userProfilePictureEl = document.getElementById("user-profile-picture")
 const userGreetingEl = document.getElementById("user-greeting")
 
+const displayNameInputEl = document.getElementById("display-name-input")
+const photoURLInputEl = document.getElementById("photo-url-input")
+const updateProfileButtonEl = document.getElementById("update-profile-btn")
+
 /* == UI - Event Listeners == */
 
 signInWithGoogleButtonEl.addEventListener("click", authSignInWithGoogle)
@@ -50,6 +55,7 @@ signInWithGoogleButtonEl.addEventListener("click", authSignInWithGoogle)
 signInButtonEl.addEventListener("click", authSignInWithEmail)
 createAccountButtonEl.addEventListener("click", authCreateAccountWithEmail)
 signOutBtn.addEventListener("click", authSignOut)
+updateProfileButtonEl.addEventListener("click", authUpdateProfile)
 
 /* === Main Code === */
 
@@ -175,4 +181,16 @@ function showUserGreeting(element, user){
     else{
         element.innerText = (`Hey friend, how are you?`)
     }
+}
+
+function authUpdateProfile() {
+    updateProfile(auth.currentUser, {
+        displayName: "Jane Q. User", photoURL: "https://example.com/jane-q-user/profile.jpg"
+      }).then(() => {
+        // Profile updated!
+        // ...
+      }).catch((error) => {
+        // An error occurred
+        // ...
+      });
 }

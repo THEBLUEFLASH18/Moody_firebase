@@ -200,7 +200,7 @@ button:hover {
 .app-container {
     display: flex;
     flex-direction: column;
-    gap: 3em;
+    gap: 1em;
     align-self: center; /* Center itself within the container */
     justify-content: center; /* Center its children vertically */
 }
