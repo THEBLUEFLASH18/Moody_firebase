@@ -200,7 +200,7 @@ button:hover {
 .app-container {
     display: flex;
     flex-direction: column;
-    gap: 1em;
+    gap: 2em;
     align-self: center; /* Center itself within the container */
     justify-content: center; /* Center its children vertically */
 }
@@ -211,6 +211,13 @@ button:hover {
     align-items: center;
     gap: 0.8em;
 }
+
+.post-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
 
 .user-section img {
     width: 3.75em;
@@ -241,4 +248,22 @@ nav {
 
 .user-section h2 {
     font-size: 1.2em;
+}
+
+input, button, textarea {
+    font-family: inherit;
+    padding: var(--element-padding);
+    border-radius: var(--element-border-radius);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input, button {
+    font-size: 1.1em;
+    text-align: center;
+    border: var(--border-width) solid var(--dark-color);
+}
+
+input:focus, button:focus, textarea:focus {
+    outline: none;
 }
