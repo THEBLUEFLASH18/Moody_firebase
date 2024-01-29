@@ -7,7 +7,7 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
     signOut, onAuthStateChanged, GoogleAuthProvider, signInWithPopup,
     updateProfile } from "firebase/auth";
 
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
 
 /* === Firebase Setup === */
 
@@ -52,6 +52,9 @@ const displayNameInputEl = document.getElementById("display-name-input")
 const photoURLInputEl = document.getElementById("photo-url-input")
 const updateProfileButtonEl = document.getElementById("update-profile-btn")
 
+const textareaEl = document.getElementById("post-input")
+const postButtonEl = document.getElementById("post-btn")
+
 /* == UI - Event Listeners == */
 
 signInWithGoogleButtonEl.addEventListener("click", authSignInWithGoogle)
@@ -59,6 +62,8 @@ signInWithGoogleButtonEl.addEventListener("click", authSignInWithGoogle)
 signInButtonEl.addEventListener("click", authSignInWithEmail)
 createAccountButtonEl.addEventListener("click", authCreateAccountWithEmail)
 signOutBtn.addEventListener("click", authSignOut)
+
+postButtonEl.addEventListener("click", postButtonPressed)
 //updateProfileButtonEl.addEventListener("click", authUpdateProfile)
 
 /* === Main Code === */
@@ -140,6 +145,16 @@ function authSignOut() {
 
 /* == Functions - UI Functions == */
 
+
+function postButtonPressed() {
+    const postBody = textareaEl.value
+    
+    if (postBody) {
+        // addPostToDB(postBody)
+        clearInputField(textareaEl)
+    }
+}
+
 function showLoggedOutView() {
     hideView(viewLoggedIn)
     showView(viewLoggedOut)
@@ -199,3 +214,14 @@ function authUpdateProfile() {
         console.log("error occurred!")
       });
 }
+
+async function addPostToDB(postBody){
+    try {
+        const docRef = await addDoc(collection(db, "Post"), {
+            body: postBody
+        });
+        console.log("Post has been uploaded");
+      } catch (e) {
+        console.error("Error adding document: ", e);
+      }
+} 
