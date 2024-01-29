@@ -150,7 +150,7 @@ function postButtonPressed() {
     const postBody = textareaEl.value
     
     if (postBody) {
-        // addPostToDB(postBody)
+        addPostToDB(postBody)
         clearInputField(textareaEl)
     }
 }
