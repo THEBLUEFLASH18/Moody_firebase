@@ -148,9 +148,9 @@ function authSignOut() {
 
 function postButtonPressed() {
     const postBody = textareaEl.value
-    
+    const user = auth.currentUser
     if (postBody) {
-        addPostToDB(postBody)
+        addPostToDB(postBody, user)
         clearInputField(textareaEl)
     }
 }
@@ -218,7 +218,8 @@ function authUpdateProfile() {
 async function addPostToDB(postBody){
     try {
         const docRef = await addDoc(collection(db, "Post"), {
-            body: postBody
+            body: postBody,
+            uid: user.uid
         });
         console.log("Post has been uploaded");
       } catch (e) {
