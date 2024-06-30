@@ -215,7 +215,7 @@ function authUpdateProfile() {
       });
 }
 
-async function addPostToDB(postBody){
+async function addPostToDB(postBody, user){
     try {
         const docRef = await addDoc(collection(db, "Post"), {
             body: postBody,
