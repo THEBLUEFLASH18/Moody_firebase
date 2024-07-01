@@ -66,7 +66,17 @@ signOutBtn.addEventListener("click", authSignOut)
 postButtonEl.addEventListener("click", postButtonPressed)
 //updateProfileButtonEl.addEventListener("click", authUpdateProfile)
 
+const moodEmojiEls = document.getElementsByClassName("mood-emoji-btn")
+
+for (let moodEmojiEl of moodEmojiEls) {
+    moodEmojiEl.addEventListener("click", selectMood)
+}
+
 /* === Main Code === */
+
+/* Mood State */
+
+let moodState = 0;
 
 
 
@@ -149,9 +159,10 @@ function authSignOut() {
 function postButtonPressed() {
     const postBody = textareaEl.value
     const user = auth.currentUser
-    if (postBody) {
+    if (postBody  && moodState) {
         addPostToDB(postBody, user)
         clearInputField(textareaEl)
+        resetAllMoodElements(moodEmojiEls)
     }
 }
 
@@ -220,10 +231,48 @@ async function addPostToDB(postBody, user){
         const docRef = await addDoc(collection(db, "Post"), {
             body: postBody,
             uid: user.uid,
-            createdAt: serverTimestamp()
+            createdAt: serverTimestamp(),
+            mood: moodState
         });
         console.log("Post has been uploaded");
       } catch (e) {
         console.error("Error adding document: ", e);
       }
 } 
+
+/* Mood functions */
+
+function selectMood(event) {
+    const selectedMoodEmojiElementId = event.currentTarget.id
+    
+    changeMoodsStyleAfterSelection(selectedMoodEmojiElementId, moodEmojiEls)
+    
+    const chosenMoodValue = returnMoodValueFromElementId(selectedMoodEmojiElementId)
+    
+    moodState = chosenMoodValue
+}
+
+function changeMoodsStyleAfterSelection(selectedMoodElementId, allMoodElements) {
+    for (let moodEmojiEl of moodEmojiEls) {
+        if (selectedMoodElementId === moodEmojiEl.id) {
+            moodEmojiEl.classList.remove("unselected-emoji")          
+            moodEmojiEl.classList.add("selected-emoji")
+        } else {
+            moodEmojiEl.classList.remove("selected-emoji")
+            moodEmojiEl.classList.add("unselected-emoji")
+        }
+    }
+}
+
+function resetAllMoodElements(allMoodElements) {
+    for (let moodEmojiEl of allMoodElements) {
+        moodEmojiEl.classList.remove("selected-emoji")
+        moodEmojiEl.classList.remove("unselected-emoji")
+    }
+    
+    moodState = 0
+}
+
+function returnMoodValueFromElementId(elementId) {
+    return Number(elementId.slice(5))
+}

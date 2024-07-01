@@ -267,3 +267,37 @@ input, button {
 input:focus, button:focus, textarea:focus {
     outline: none;
 }
+
+/* Mood Image layouts */ 
+
+.mood-emojis {
+    display: flex;
+    justify-content: space-between;
+}
+
+.mood-emoji-btn {
+    font-size: 0.8em;
+    background-color: transparent;
+}
+.mood-emoji-btn:hover {
+    transform: scale(1.5);
+    border: 2px solid black;
+}
+.mood-emoji-btn:active {
+    transform: scale(1.5);
+    border: 2px solid green;
+}
+
+.selected-emoji {
+    transform: scale(1.5);
+    opacity: 1;
+}
+.unselected-emoji {
+    transform: scale(1);
+    opacity: 0.5;
+}
+
+.mood-emoji-btn img{
+    width: 40px;
+    height: 40px;
+}
