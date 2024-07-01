@@ -7,7 +7,7 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
     signOut, onAuthStateChanged, GoogleAuthProvider, signInWithPopup,
     updateProfile } from "firebase/auth";
 
-import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { getFirestore, collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 /* === Firebase Setup === */
 
@@ -212,14 +212,15 @@ function authUpdateProfile() {
         // ...
       }).catch((error) => {
         console.log("error occurred!")
-      });
+      })
 }
 
-async function addPostToDB(postBody, user){
+async function addPostToDB(postBody, user, serverTimestamp){
     try {
         const docRef = await addDoc(collection(db, "Post"), {
             body: postBody,
-            uid: user.uid
+            uid: user.uid,
+            createdAt: serverTimestamp
         });
         console.log("Post has been uploaded");
       } catch (e) {
