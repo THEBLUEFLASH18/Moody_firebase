@@ -215,12 +215,12 @@ function authUpdateProfile() {
       })
 }
 
-async function addPostToDB(postBody, user, serverTimestamp){
+async function addPostToDB(postBody, user){
     try {
         const docRef = await addDoc(collection(db, "Post"), {
             body: postBody,
             uid: user.uid,
-            createdAt: serverTimestamp
+            createdAt: serverTimestamp()
         });
         console.log("Post has been uploaded");
       } catch (e) {
